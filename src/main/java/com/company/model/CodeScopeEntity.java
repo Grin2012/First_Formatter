@@ -10,8 +10,13 @@ public class CodeScopeEntity extends CodeEntity {
     public void write(IWriter writer, int nestLevel) throws WriterException {
         writer.writeChar('{');
         writer.writeChar('\n');
-        super.write(writer, nestLevel);
-        writer.writeChar('\n');
+        if (!super.nestedEntities.isEmpty() && super.nestedEntities.get(0) instanceof CodeScopeEntity) {
+            writeTab(writer, nestLevel);
+        }
+        if (!super.nestedEntities.isEmpty()) {
+            super.write(writer, nestLevel);
+            writer.writeChar('\n');
+        }
         writeTab(writer, nestLevel - 1);
         writer.writeChar('}');
     }

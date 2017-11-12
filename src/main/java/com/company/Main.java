@@ -1,5 +1,5 @@
 package com.company;
-import com.company.formater.Formater;
+import com.company.formater.Formatter;
 import com.company.readerwriter.reader.FileReader;
 import com.company.readerwriter.reader.ReaderException;
 import com.company.readerwriter.writer.FileWriter;
@@ -46,7 +46,8 @@ public class Main {
 
         FileReader reader = new FileReader(args[0]);
         FileWriter writer = new FileWriter(args[1]);
-        Formater.formate(reader, writer);
+        Formatter formatter = new Formatter();
+        formatter.format(reader, writer);
         reader.close();
         writer.close();
 

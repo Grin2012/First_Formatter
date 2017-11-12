@@ -1,4 +1,4 @@
 /**
- * Formater interface, class.
+ * Formatter interface, class.
  */
 package com.company.formater;

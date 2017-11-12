@@ -10,15 +10,39 @@ import static org.junit.Assert.assertEquals;
 public class FormatterStringTest {
 
     @Test
-    public void testMain_brace() throws Exception, ReaderException, WriterException {
-        String test = "{}";
-        String awaitingResult = "{\n\n}";
+    public void test_newline() throws Exception, ReaderException, WriterException {
+        String test = "123;456;789";
+        String awaitingResult = "123;\n456;\n789";
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formater.formate(reader, writer);
+        Formatter formatter = new Formatter();
+        formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
+    }
 
+    @Test
+    public void testMain_brace() throws Exception, ReaderException, WriterException {
+        String test = "{}";
+        String awaitingResult = "{\n}";
+        StringReader reader = new StringReader(test);
+        StringWriter writer = new StringWriter();
+        Formatter formatter = new Formatter();
+        formatter.format(reader, writer);
+        String testOut = writer.getString();
+        assertEquals(awaitingResult, testOut);
+    }
+
+    @Test
+    public void testMain_mbrace() throws Exception, ReaderException, WriterException {
+        String test = "{{}}";
+        String awaitingResult = "{\n    {\n    }\n}";
+        StringReader reader = new StringReader(test);
+        StringWriter writer = new StringWriter();
+        Formatter formatter = new Formatter();
+        formatter.format(reader, writer);
+        String testOut = writer.getString();
+        assertEquals(awaitingResult, testOut);
     }
 
     @Test
@@ -30,10 +54,10 @@ public class FormatterStringTest {
                 "}";
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formater.formate(reader, writer);
+        Formatter formatter = new Formatter();
+        formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
-
     }
 
     @Test
@@ -48,7 +72,6 @@ public class FormatterStringTest {
                 "        return root; }   private void parseCode(CodeEntity parentEntity, StringReader reader) throws IOException {\n" +
                 "        CodeEntity currentEntity = null;\n" +
                 "        int charCode = -1; while((charCode = reader.read()) != -1) {\n" +
-                "\n" +
                 "        }\n" +
                 "    }\n" +
                 "}";
@@ -67,14 +90,14 @@ public class FormatterStringTest {
                 "        CodeEntity currentEntity = null;\n" +
                 "        int charCode = -1;\n" +
                 "        while((charCode = reader.read()) != -1) {\n" +
-                "\n" +
                 "        }\n" +
                 "    }\n" +
                 "}";
 
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formater.formate(reader, writer);
+        Formatter formatter = new Formatter();
+        formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
     }

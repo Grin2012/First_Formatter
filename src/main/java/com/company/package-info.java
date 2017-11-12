@@ -1,4 +1,4 @@
 /**
- * Contains file of code Formater
+ * Contains file of code Formatter
  */
 package com.company;

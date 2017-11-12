@@ -11,4 +11,5 @@ public interface IWriter {
      * @throws WriterException - something wrong
      */
     void writeChar(char c) throws WriterException;
+
 }

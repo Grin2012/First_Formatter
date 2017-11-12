@@ -95,9 +95,11 @@ public class JavaCodeParser {
                     break;
             }
 
-         //   prevCharCode = charCode;
+            //   prevCharCode = charCode;
+        }
+        if (currentEntity != null) {
+            parentEntity.nest(currentEntity);
         }
     }
-
 }
 
