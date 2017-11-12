@@ -1,26 +1,34 @@
-package com.company;
+package com.company.formater;
 
-import com.company.Model.*;
+import com.company.model.*;
+import com.company.readerwriter.reader.ReaderException;
+import com.company.readerwriter.reader.IReader;
+
 import java.io.IOException;
-import java.io.StringReader;
 
-
-public class JavaCodeParser
-{
-    public CodeEntity Parse(StringReader reader) throws IOException {
+/**
+ * parseCode source code
+ */
+public class JavaCodeParser {
+    /**
+     *
+     * @param reader - reader result = char
+     * @return - return conception
+     * @throws IOException - when something wrong
+     * @throws ReaderException - when something wrong
+     */
+    public CodeEntity parseCode(final IReader reader) throws IOException, ReaderException {
         CodeEntity root = new CodeEntity();
-        Parse(root, reader);
+        parseCode(root, reader);
         return root;
     }
 
 
-    private void Parse(CodeEntity parentEntity, StringReader reader) throws IOException {
+    private void parseCode(final CodeEntity parentEntity, final IReader reader) throws IOException, ReaderException {
         CodeEntity currentEntity = null;
-
-        int charCode = -1;
-        int prevCharCode = -1;
-        while ((charCode = reader.read()) != -1) {
-            char c = (char) charCode;
+        //  int prevCharCode = -1;
+        while (reader.hasChar()) {
+            char c = reader.readChar();
 
             switch (c) {
                 case '}':
@@ -32,6 +40,7 @@ public class JavaCodeParser
                 case ' ':
                 case '\t':
                 case '\n':
+                case '\r':
                     if (currentEntity == null) {
                         break;
                     }
@@ -53,7 +62,7 @@ public class JavaCodeParser
 
                     currentEntity = new CodeScopeEntity();
                     parentEntity.nest(currentEntity);
-                    Parse(currentEntity, reader);
+                    parseCode(currentEntity, reader);
                     currentEntity = null;
                     break;
 
@@ -79,14 +88,16 @@ public class JavaCodeParser
                     break;
 
                 default:
-                    if(currentEntity == null) {
+                    if (currentEntity == null) {
                         currentEntity = new CodeWordEntity();
                     }
                     currentEntity.nest(new CodeCharEntity(c));
                     break;
             }
 
-            prevCharCode = charCode;
+         //   prevCharCode = charCode;
         }
     }
+
 }
+

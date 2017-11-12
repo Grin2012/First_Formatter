@@ -1,33 +1,57 @@
-package com.company.Model;
+package com.company.model;
 
-import com.company.ReaderWriter.IOexeption.WriterException;
-import com.company.ReaderWriter.IWriter;
-
+import com.company.readerwriter.writer.IWriter;
+import com.company.readerwriter.writer.WriterException;
 import java.util.ArrayList;
+
+/**
+ * Class codeEntity
+ */
 
 public class CodeEntity {
     private Character letter;
     private ArrayList<CodeEntity> nestedEntities;
 
+    /**
+     * default constructor CodeEntity
+     */
     public CodeEntity() {
         this.nestedEntities = new ArrayList<CodeEntity>();
     }
 
-    protected CodeEntity(char charValue) {
+    /**
+     * constructor CodeEntity
+     * @param charValue - char
+     */
+    protected CodeEntity(final char charValue) {
         this.letter = charValue;
         this.nestedEntities = new ArrayList<CodeEntity>();
     }
 
-    public void nest(CodeEntity nestedEntity) {
+    /**
+     * Nest Entity
+     * @param nestedEntity - entity
+     */
+    public void nest(final CodeEntity nestedEntity) {
         this.nestedEntities.add(nestedEntity);
     }
 
-    public void write(IWriter writer) throws WriterException {
+    /**
+     * Method write - write char to writer
+     * @param writer - source writer
+     * @throws WriterException - writer exception
+     */
+    public void write(final IWriter writer) throws WriterException {
         write(writer, 0);
     }
 
-    protected void write(IWriter writer, int nestLevel) throws WriterException {
-
+    /**
+     * Method write - write char to writer
+     * @param writer - source writer
+     * @param nestLevel - level of nest
+     * @throws WriterException - writer exception
+     */
+    protected void write(final IWriter writer, final int nestLevel) throws WriterException {
         if (this.letter != null) {
             writer.writeChar(this.letter);
         }
@@ -41,31 +65,35 @@ public class CodeEntity {
         }
     }
 
-    protected void writeTab(IWriter writer, int nestLevel) throws WriterException {
+    /**
+     * Method writeTab - write tab before text
+     * @param writer - source writer
+     * @param nestLevel - level of nest
+     * @throws WriterException - writer exception
+     */
+    protected void writeTab(final IWriter writer, final int nestLevel) throws WriterException {
         int spacesInTab = 4;
         for (int i = 0; i < spacesInTab * nestLevel; i++) {
             writer.writeChar(' ');
         }
     }
 
-    private void writeTab(IWriter writer, int nestLevel, CodeEntity prev, CodeEntity current) throws WriterException {
+    private void writeTab(final IWriter writer, final int nestLevel, final CodeEntity prev, final CodeEntity current) throws WriterException {
         if (prev == null && current instanceof CodeWordEntity) {
             writeTab(writer, nestLevel);
             return;
         }
-
         if (prev instanceof CodeScopeEntity) {
             writeTab(writer, nestLevel);
             return;
         }
-
         if (prev instanceof CodeLineEndEntity) {
             writeTab(writer, nestLevel);
             return;
         }
     }
 
-    private void writeSpace(IWriter writer, CodeEntity prev, CodeEntity current) throws WriterException {
+    private void writeSpace(final IWriter writer, final CodeEntity prev, final CodeEntity current) throws WriterException {
         if (prev instanceof CodeWordEntity
                 && current instanceof CodeWordEntity) {
             writer.writeChar(' ');
@@ -78,10 +106,9 @@ public class CodeEntity {
                 && current instanceof CodeStringEntity) {
             writer.writeChar(' ');
         }
-
     }
 
-    private void writeNewLine(IWriter writer, CodeEntity prev) throws WriterException {
+    private void writeNewLine(final IWriter writer, final CodeEntity prev) throws WriterException {
         if (prev instanceof CodeLineEndEntity) {
             writer.writeChar('\n');
             return;
@@ -90,6 +117,5 @@ public class CodeEntity {
             writer.writeChar('\n');
             return;
         }
-
     }
 }

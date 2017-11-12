@@ -1,9 +1,8 @@
 package com.company;
 
-import com.company.Model.CodeEntity;
-import com.company.ReaderWriter.IOexeption.ReaderException;
-import com.company.ReaderWriter.IOexeption.WriterException;
-import com.company.ReaderWriter.IOstring.*;
+import com.company.formater.*;
+import com.company.readerwriter.reader.*;
+import com.company.readerwriter.writer.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -11,15 +10,42 @@ import static org.junit.Assert.assertEquals;
 public class FormatterStringTest {
 
     @Test
+    public void testMain_brace() throws Exception, ReaderException, WriterException {
+        String test = "{}";
+        String awaitingResult = "{\n\n}";
+        StringReader reader = new StringReader(test);
+        StringWriter writer = new StringWriter();
+        Formater.formate(reader, writer);
+        String testOut = writer.getString();
+        assertEquals(awaitingResult, testOut);
+
+    }
+
+    @Test
+    public void testMain_s() throws Exception, ReaderException, WriterException {
+        String test = "regrege{grgrg}";
+
+        String awaitingResult = "regrege {\n" +
+                "    grgrg\n" +
+                "}";
+        StringReader reader = new StringReader(test);
+        StringWriter writer = new StringWriter();
+        Formater.formate(reader, writer);
+        String testOut = writer.getString();
+        assertEquals(awaitingResult, testOut);
+
+    }
+
+    @Test
     public void testMain() throws Exception, ReaderException, WriterException {
         String test = "package com.company;\n" +
-                "import com.company.Model.*;\n" +
+                "import com.company.model.*;\n" +
                 "import java.io.IOException;\n" +
                 "import java.io.StringReader;\n" +
                 "public class TestSyntaxJavaCodeParser {\n" +
-                "    public CodeEntity Parse(StringReader reader) throws IOException {\n" +
-                "        CodeEntity root = new CodeEntity(); Parse(root, reader);\n" +
-                "        return root; }   private void Parse(CodeEntity parentEntity, StringReader reader) throws IOException {\n" +
+                "    public CodeEntity parseCode(StringReader reader) throws IOException {\n" +
+                "        CodeEntity root = new CodeEntity(); parseCode(root, reader);\n" +
+                "        return root; }   private void parseCode(CodeEntity parentEntity, StringReader reader) throws IOException {\n" +
                 "        CodeEntity currentEntity = null;\n" +
                 "        int charCode = -1; while((charCode = reader.read()) != -1) {\n" +
                 "\n" +
@@ -28,16 +54,16 @@ public class FormatterStringTest {
                 "}";
 
         String awaitingResult = "package com.company;\n" +
-                "import com.company.Model.*;\n" +
+                "import com.company.model.*;\n" +
                 "import java.io.IOException;\n" +
                 "import java.io.StringReader;\n" +
                 "public class TestSyntaxJavaCodeParser {\n" +
-                "    public CodeEntity Parse(StringReader reader) throws IOException {\n" +
+                "    public CodeEntity parseCode(StringReader reader) throws IOException {\n" +
                 "        CodeEntity root = new CodeEntity();\n" +
-                "        Parse(root, reader);\n" +
+                "        parseCode(root, reader);\n" +
                 "        return root;\n" +
                 "    }\n" +
-                "    private void Parse(CodeEntity parentEntity, StringReader reader) throws IOException {\n" +
+                "    private void parseCode(CodeEntity parentEntity, StringReader reader) throws IOException {\n" +
                 "        CodeEntity currentEntity = null;\n" +
                 "        int charCode = -1;\n" +
                 "        while((charCode = reader.read()) != -1) {\n" +
@@ -48,9 +74,7 @@ public class FormatterStringTest {
 
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        JavaCodeParser parser = new JavaCodeParser();
-        CodeEntity root = parser.Parse(reader);
-        root.write(writer);
+        Formater.formate(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
     }

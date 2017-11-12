@@ -1,8 +1,10 @@
-package com.company.Model;
+package com.company.model;
 
-import com.company.ReaderWriter.IOexeption.WriterException;
-import com.company.ReaderWriter.IWriter;
-
+import com.company.readerwriter.writer.IWriter;
+import com.company.readerwriter.writer.WriterException;
+/**
+ * Write CodeScope Entity to Entities tree and override method "write" of CodeEntity class
+ */
 public class CodeScopeEntity extends CodeEntity {
     @Override
     public void write(IWriter writer, int nestLevel) throws WriterException {

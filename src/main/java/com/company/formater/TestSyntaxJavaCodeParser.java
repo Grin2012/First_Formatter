@@ -1,5 +1,10 @@
-package com.company;
-import com.company.Model.*;
+package com.company.formater;
+/**
+ * Test code file
+ */
+
+/*
+import com.company.model.*;
 import java.io.IOException;
 import java.io.StringReader;
 public class TestSyntaxJavaCodeParser {
@@ -12,3 +17,4 @@ public class TestSyntaxJavaCodeParser {
         }
     }
 }
+*/
