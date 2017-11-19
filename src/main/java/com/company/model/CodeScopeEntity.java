@@ -7,7 +7,7 @@ import com.company.readerwriter.writer.WriterException;
  */
 public class CodeScopeEntity extends CodeEntity {
     @Override
-    public void write(IWriter writer, int nestLevel) throws WriterException {
+    public void write(final IWriter writer, final int nestLevel) throws WriterException {
         writer.writeChar('{');
         writer.writeChar('\n');
         if (!super.nestedEntities.isEmpty() && super.nestedEntities.get(0) instanceof CodeScopeEntity) {

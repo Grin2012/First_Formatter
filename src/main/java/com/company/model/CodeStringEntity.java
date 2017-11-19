@@ -7,7 +7,7 @@ import com.company.readerwriter.writer.IWriter;
  */
 public class CodeStringEntity extends CodeEntity {
     @Override
-    public void write(IWriter writer,int nestLevel) throws WriterException {
+    public void write(final IWriter writer, final int nestLevel) throws WriterException {
         writer.writeChar('\"');
         super.write(writer, nestLevel);
         writer.writeChar('\"');

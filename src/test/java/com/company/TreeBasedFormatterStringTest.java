@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FormatterStringTest {
+public class TreeBasedFormatterStringTest {
 
     @Test
     public void test_newline() throws Exception, ReaderException, WriterException {
@@ -15,7 +15,7 @@ public class FormatterStringTest {
         String awaitingResult = "123;\n456;\n789";
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formatter formatter = new Formatter();
+        TreeBasedFormatter formatter = new TreeBasedFormatter();
         formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
@@ -27,7 +27,7 @@ public class FormatterStringTest {
         String awaitingResult = "{\n}";
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formatter formatter = new Formatter();
+        TreeBasedFormatter formatter = new TreeBasedFormatter();
         formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
@@ -39,7 +39,7 @@ public class FormatterStringTest {
         String awaitingResult = "{\n    {\n    }\n}";
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formatter formatter = new Formatter();
+        TreeBasedFormatter formatter = new TreeBasedFormatter();
         formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
@@ -54,7 +54,7 @@ public class FormatterStringTest {
                 "}";
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formatter formatter = new Formatter();
+        TreeBasedFormatter formatter = new TreeBasedFormatter();
         formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);
@@ -96,7 +96,7 @@ public class FormatterStringTest {
 
         StringReader reader = new StringReader(test);
         StringWriter writer = new StringWriter();
-        Formatter formatter = new Formatter();
+        TreeBasedFormatter formatter = new TreeBasedFormatter();
         formatter.format(reader, writer);
         String testOut = writer.getString();
         assertEquals(awaitingResult, testOut);

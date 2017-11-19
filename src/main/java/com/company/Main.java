@@ -1,8 +1,13 @@
 package com.company;
-import com.company.formater.Formatter;
+import com.company.formater.LexerBasedFormatter;
+import com.company.formater.TreeBasedFormatter;
+import com.company.lexer.ILexer;
+import com.company.lexer.Lexer;
 import com.company.readerwriter.reader.FileReader;
 import com.company.readerwriter.reader.ReaderException;
+import com.company.readerwriter.reader.StringReader;
 import com.company.readerwriter.writer.FileWriter;
+import com.company.readerwriter.writer.StringWriter;
 import com.company.readerwriter.writer.WriterException;
 
 /**
@@ -44,13 +49,27 @@ public class Main {
                 "    }\n" +
                 "}";
 
-        FileReader reader = new FileReader(args[0]);
-        FileWriter writer = new FileWriter(args[1]);
-        Formatter formatter = new Formatter();
+//        FileReader reader = new FileReader(args[0]);
+
+        ILexer lexer = new Lexer(new StringReader(fileContent));
+        StringWriter writer = new StringWriter();
+        LexerBasedFormatter formatter = new LexerBasedFormatter();
+        formatter.format(lexer, writer);
+        System.out.print(writer.getString());
+
+        lexer = new Lexer(new StringReader(fileContent));
+        while (lexer.hasMoreTokens()) {
+        System.out.println(lexer.readToken());
+        }
+
+
+
+/*        FileWriter writer = new FileWriter(args[1]);
+        TreeBasedFormatter formatter = new TreeBasedFormatter();
         formatter.format(reader, writer);
         reader.close();
         writer.close();
-
+*/
     }
 }
 

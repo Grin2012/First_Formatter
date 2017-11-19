@@ -1,5 +1,6 @@
 package com.company.formater;
 
+import com.company.lexer.ILexer;
 import com.company.readerwriter.reader.IReader;
 import com.company.readerwriter.writer.IWriter;
 import com.company.readerwriter.reader.ReaderException;
@@ -8,7 +9,7 @@ import com.company.readerwriter.writer.WriterException;
 import java.io.IOException;
 
 /**
- * Formatter interface.
+ * TreeBasedFormatter interface.
  */
 
 public interface IFormatter {
@@ -21,5 +22,6 @@ public interface IFormatter {
      * @throws IOException - IO exceptions
      * @throws ReaderException - reader exceptions
      */
-    void format (IReader reader, IWriter writer) throws WriterException, IOException, ReaderException;
+    void format(IReader reader, IWriter writer) throws WriterException, IOException, ReaderException;
+
 }

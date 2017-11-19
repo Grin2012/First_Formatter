@@ -1,4 +1,4 @@
 /**
- * Contains file of code Formatter
+ * Contains file of code TreeBasedFormatter
  */
 package com.company;

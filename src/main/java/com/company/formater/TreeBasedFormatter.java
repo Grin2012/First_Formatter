@@ -8,9 +8,9 @@ import com.company.readerwriter.writer.WriterException;
 import java.io.IOException;
 
 /**
- * Formatter format sourse
+ * TreeBasedFormatter format sourse
  */
-public class Formatter implements IFormatter {
+public class TreeBasedFormatter implements IFormatter {
     /**
      * Format the source code
      * @param reader - implemented IReader

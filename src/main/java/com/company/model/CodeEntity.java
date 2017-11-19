@@ -72,7 +72,7 @@ public class CodeEntity {
      * @throws WriterException - writer exception
      */
     protected void writeTab(final IWriter writer, final int nestLevel) throws WriterException {
-        int spacesInTab = 4;
+        final int spacesInTab = 4;
         for (int i = 0; i < spacesInTab * nestLevel; i++) {
             writer.writeChar(' ');
         }
