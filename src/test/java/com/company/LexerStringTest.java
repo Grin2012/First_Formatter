@@ -22,6 +22,7 @@ public class LexerStringTest {
         lexer = new Lexer(reader);
         assertEquals(new Token("rightBrace", lexerTest).toString(), lexer.getToken().toString());
     }
+
     @Test
     public void testLeftBrace() throws LexerException, ReaderException {
         lexerTest = "{";
@@ -29,6 +30,7 @@ public class LexerStringTest {
         lexer = new Lexer(reader);
         assertEquals(new Token("leftBrace", lexerTest).toString(), lexer.getToken().toString());
     }
+
     @Test
     public void testSemiColon() throws LexerException, ReaderException {
         lexerTest = ";";
@@ -36,6 +38,7 @@ public class LexerStringTest {
         lexer = new Lexer(reader);
         assertEquals(new Token("semiColon", lexerTest).toString(), lexer.getToken().toString());
     }
+
     @Test
     public void testStringLiteral() throws LexerException, ReaderException {
         lexerTest = "\"regrege\\\"{grgrg;}\"";
@@ -43,6 +46,7 @@ public class LexerStringTest {
         lexer = new Lexer(reader);
         assertEquals(new Token("stringLiteral", lexerTest).toString(), lexer.getToken().toString());
     }
+
     @Test
     public void testSingleLineComment() throws LexerException, ReaderException {
         lexerTest = "//And i say:\"regrege{grgrg;}\"";
@@ -59,14 +63,6 @@ public class LexerStringTest {
         lexer = new Lexer(reader);
         assertEquals(new Token("multiLineComment", lexerTest).toString(), lexer.getToken().toString());
     }
-
-//    @Test
-//    public void testMultiLineComment() throws LexerException, ReaderException {
-//        lexerTest = "int i = 10; /*first*/";
-//        reader = new StringReader(lexerTest);
-//        lexer = new Lexer(reader);
-//        assertEquals(new Token("multiLineComment", lexerTest).toString(), lexer.getToken().toString());
-//    }
 
     @Test
     public void testWord() throws LexerException, ReaderException {
