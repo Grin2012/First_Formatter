@@ -1,21 +1,40 @@
 package com.company.readerwriter.reader;
 
+/**
+ * Utility Class CharCodeCache
+ */
+
 public class CharCodeCache {
     private int charCode;
 
+    /**
+     * Check buffer for more chars
+     * @return - boolean
+     */
     public boolean isEmpty() {
         return this.charCode == -1;
     }
 
-    public void add (int charCode) {
+    /**
+     * Put to buffer
+     * @param charCode - int
+     */
+    public void add(final int charCode) {
         this.charCode = charCode;
     }
 
-    public void clean () {
+    /**
+     * Clean buffer
+     */
+    public void clean() {
         this.charCode = -1;
     }
 
-    public char toChar () {
+    /**
+     * Char from buffer
+     * @return char
+     */
+    public char toChar() {
         return (char) this.charCode;
     }
 }

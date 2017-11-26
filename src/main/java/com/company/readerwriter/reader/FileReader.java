@@ -41,9 +41,9 @@ public class FileReader implements IReader, IClosable {
     }
 
     @Override
-    public char readChar() throws ReaderException {
+    public char getChar() throws ReaderException {
         try {
-            if (hasChar()) {
+            if (canReadChar()) {
                 return this.charCodeCache.toChar();
             }
             throw new ReaderException("stream_end");
@@ -53,7 +53,7 @@ public class FileReader implements IReader, IClosable {
     }
 
     @Override
-    public boolean hasChar() throws ReaderException {
+    public boolean canReadChar() throws ReaderException {
         try {
             if (!this.charCodeCache.isEmpty()) {
                 return true;

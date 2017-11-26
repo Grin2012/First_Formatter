@@ -1,6 +1,5 @@
 package com.company.formater;
 
-import com.company.lexer.ILexer;
 import com.company.readerwriter.reader.IReader;
 import com.company.readerwriter.writer.IWriter;
 import com.company.readerwriter.reader.ReaderException;

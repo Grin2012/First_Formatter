@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public class CodeEntity {
     private Character letter;
+    /**
+     * Create protected ArrayList CodeEntity
+     */
     protected ArrayList<CodeEntity> nestedEntities;
 
     /**

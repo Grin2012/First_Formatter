@@ -18,7 +18,7 @@ public class StringReader implements IReader {
     }
 
     @Override
-    public char readChar() throws ReaderException {
+    public char getChar() throws ReaderException {
         try {
             return sourceSring.charAt(n);
         } catch (Exception e) {
@@ -29,7 +29,7 @@ public class StringReader implements IReader {
     }
 
     @Override
-    public boolean hasChar() throws ReaderException {
+    public boolean canReadChar() throws ReaderException {
         return n < sourceSring.length();
     }
 }

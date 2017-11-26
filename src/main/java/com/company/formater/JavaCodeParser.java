@@ -27,8 +27,8 @@ public class JavaCodeParser {
     private void parseCode(final CodeEntity parentEntity, final IReader reader) throws IOException, ReaderException {
         CodeEntity currentEntity = null;
         //  int prevCharCode = -1;
-        while (reader.hasChar()) {
-            char c = reader.readChar();
+        while (reader.canReadChar()) {
+            char c = reader.getChar();
 
             switch (c) {
                 case '}':
