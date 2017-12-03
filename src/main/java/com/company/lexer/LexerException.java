@@ -10,7 +10,7 @@ public class LexerException extends Throwable {
     /**
      * @param innerException - throws innerException
      */
-    public LexerException(final IOException innerException) {
+    public LexerException(final Throwable innerException) {
         super(innerException);
     }
 
@@ -26,9 +26,7 @@ public class LexerException extends Throwable {
      * @param message - exception with message
      * @param innerException - throws innerException
      */
-    public LexerException(final String message, final Exception innerException) {
+    public LexerException(final String message, final Throwable innerException) {
         super(message, innerException);
     }
 }
-
-
