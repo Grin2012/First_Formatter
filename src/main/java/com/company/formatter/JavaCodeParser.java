@@ -1,4 +1,4 @@
-package com.company.formater;
+package com.company.formatter;
 
 import com.company.model.*;
 import com.company.readerwriter.reader.ReaderException;

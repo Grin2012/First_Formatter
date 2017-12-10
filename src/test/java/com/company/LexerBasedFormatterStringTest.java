@@ -1,7 +1,6 @@
 package com.company;
 
-import com.company.formater.LexerBasedFormatter;
-import com.company.formater.TreeBasedFormatter;
+import com.company.formatter.LexerBasedFormatter;
 import com.company.lexer.ILexer;
 import com.company.lexer.Lexer;
 import com.company.lexer.LexerException;

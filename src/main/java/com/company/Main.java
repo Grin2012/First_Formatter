@@ -1,6 +1,7 @@
 package com.company;
-import com.company.formater.ILexerFormatter;
-import com.company.formater.LexerBasedFormatter;
+import com.company.formatter.FormatterException;
+import com.company.formatter.ILexerFormatter;
+import com.company.formatter.LexerBasedFormatter;
 import com.company.lexer.ILexer;
 import com.company.lexer.Lexer;
 import com.company.lexer.LexerException;
@@ -22,7 +23,7 @@ public class Main {
      * @throws WriterException - writer exception
      * @throws LexerException - lexer exception
      */
-    public static void main(final String[] args) throws Exception, ReaderException, WriterException, LexerException {
+    public static void main(final String[] args) throws Exception, ReaderException, WriterException, LexerException, FormatterException {
 
         FileReader reader = new FileReader(args[0]);
         FileWriter writer = new FileWriter(args[1]);

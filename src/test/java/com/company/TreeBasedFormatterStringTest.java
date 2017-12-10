@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.formater.*;
+import com.company.formatter.*;
 import com.company.readerwriter.reader.*;
 import com.company.readerwriter.writer.*;
 import org.junit.Test;

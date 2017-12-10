@@ -1,4 +1,4 @@
-package com.company.formater;
+package com.company.formatter;
 
 import com.company.lexer.ILexer;
 import com.company.lexer.IToken;

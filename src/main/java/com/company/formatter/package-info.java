@@ -1,4 +1,4 @@
 /**
  * TreeBasedFormatter interface, class.
  */
-package com.company.formater;
+package com.company.formatter;

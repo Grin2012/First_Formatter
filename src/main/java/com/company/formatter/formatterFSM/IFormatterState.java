@@ -1,6 +1,6 @@
-package com.company.finalStateMachine;
+package com.company.formatter.formatterFSM;
 
-public interface IState {
+public interface IFormatterState {
     /**
      * Get state name
      * @return string - State name

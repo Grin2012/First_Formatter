@@ -1,4 +1,4 @@
-package com.company.formater;
+package com.company.formatter;
 
 
 import com.company.lexer.ILexer;
@@ -23,6 +23,6 @@ public interface ILexerFormatter {
      * @throws LexerException - lexer exceptions     *
      */
 
-    void format(ILexer lexer, IWriter writer) throws WriterException, ReaderException, LexerException;
+    void format(ILexer lexer, IWriter writer) throws WriterException, ReaderException, LexerException, FormatterException;
 
 }

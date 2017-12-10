@@ -1,11 +1,18 @@
-package com.company.lexer.lexerFSM;
+package com.company.lexer.lexerFSM.implementations;
 
-import com.company.finalStateMachine.IState;
+import com.company.lexer.lexerFSM.ILexerState;
 
+/**
+ * Implementation of ILexerState
+ */
 
-public class LexerState implements IState {
-    private String state;
+public final class LexerState implements ILexerState {
+    private final String state;
 
+    /**
+     * Defult constructor
+     * @param state - current state
+     */
     public LexerState(final String state) {
         this.state = state;
     }

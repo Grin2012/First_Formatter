@@ -1,7 +1,5 @@
 package com.company.lexer;
 
-import java.io.IOException;
-
 /**
  * Reader exception class implemented IReader interface
  */

@@ -1,17 +1,18 @@
-package com.company.finalStateMachine;
+package com.company.lexer.lexerFSM;
 
 /**
  * Transition between states
- * @param <I> - input Data
+ *
  */
-public interface IStateTransitions<I> {
+public interface ILexerStateTransitions {
     /**
      * @param state - current State
      * @param in - input Data
      * @return -next FSM state
+     *
      */
 
-    IState nextState(IState state, I in);
+    ILexerState nextState(ILexerState state, Character in);
 }
 
 

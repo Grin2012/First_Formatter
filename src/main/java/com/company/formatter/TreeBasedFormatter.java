@@ -1,4 +1,4 @@
-package com.company.formater;
+package com.company.formatter;
 
 import com.company.model.CodeEntity;
 import com.company.readerwriter.reader.IReader;

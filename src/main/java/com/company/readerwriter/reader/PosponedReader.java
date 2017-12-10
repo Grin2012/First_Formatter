@@ -1,22 +1,24 @@
 package com.company.readerwriter.reader;
 
 public class PosponedReader implements IReader {
-    private StringBuilder posponed;
+    private String posponed;
     private IReader realtime;
 
     public PosponedReader(IReader realtime) {
         this.realtime = realtime;
-        this.posponed = new StringBuilder();
+        this.posponed = "";
     }
 
     public void posponeChar(char c) {
-        this.posponed.append(c);
+        this.posponed += c;
     }
 
     @Override
     public char getChar() throws ReaderException {
         if(posponReader().canReadChar()) {
-            return posponReader().getChar();
+            char next = posponReader().getChar();
+            this.posponed = posponed.substring(1);
+            return next;
         } else {
             return this.realtime.getChar();
         }
@@ -24,10 +26,10 @@ public class PosponedReader implements IReader {
 
     @Override
     public boolean canReadChar() throws ReaderException {
-        return posponReader().canReadChar() || this.canReadChar();
+        return posponReader().canReadChar() || this.realtime.canReadChar();
     }
 
     private IReader posponReader() throws ReaderException {
-        return new StringReader(this.posponed.toString());
+        return new StringReader(this.posponed);
     }
 }

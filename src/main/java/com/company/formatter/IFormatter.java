@@ -1,4 +1,4 @@
-package com.company.formater;
+package com.company.formatter;
 
 import com.company.readerwriter.reader.IReader;
 import com.company.readerwriter.writer.IWriter;

@@ -1,18 +1,27 @@
-package com.company.lexer.lexerFSM;
+package com.company.lexer.lexerFSM.implementations;
 
-import com.company.finalStateMachine.*;
 import com.company.lexer.ILexer;
 import com.company.lexer.IToken;
 import com.company.lexer.LexerException;
 import com.company.lexer.Token;
+import com.company.lexer.lexerFSM.*;
 import com.company.readerwriter.reader.IReader;
 import com.company.readerwriter.reader.PosponedReader;
 import com.company.readerwriter.reader.ReaderException;
 
-public class LexerFSM implements ILexer, IContext {
+/**
+ * Final State Machine (FSM) Lexer
+ */
+
+public final class LexerFSM implements ILexer, ILexerContext {
     private PosponedReader reader;
     private StringBuilder lexeme;
     private String tokenName;
+
+    /**
+     * Default constructor
+     * @param reader - input reading
+     */
 
     public LexerFSM(final IReader reader) {
         this.reader = new PosponedReader(reader);
@@ -30,30 +39,28 @@ public class LexerFSM implements ILexer, IContext {
     @Override
     public IToken getToken() throws LexerException, ReaderException {
         lexeme = new StringBuilder();
-
         char current;
-        IState lexerState = new LexerState("initial");
-        ICommandRepository<Character> lexerCommands = new LexerCommandRepository();
+        ILexerCommandRepository lexerCommands = new LexerCommandRepository();
+        ILexerState lexerState = new LexerState("default");
+        ILexerStateTransitions lexerStates = new LexerStateTransitions();
 
-        IStateTransitions lexerTransitions = new LexerStateTransitions();
-       //while (reader.canReadChar() && lexerState != null) {
-        while (reader.canReadChar() && lexerState.getState() != null) {
+        while (reader.canReadChar() && lexerState != null) {
             try {
                 current = reader.getChar();
-                lexerState = lexerTransitions.nextState(lexerState, current);
-                ICommand lexerCommand = lexerCommands.getCommand(lexerState, current);
+//                System.out.println("Char: " + current);
+//                System.out.println(lexerState.getState());
+                ILexerCommand lexerCommand = lexerCommands.getCommand(lexerState, current);
                 lexerCommand.execute(current, this);
+                lexerState = lexerStates.nextState(lexerState, current);
             } catch (ReaderException e) {
                 throw new LexerException("Lexer crashed", e);
            }
         }
-
         return new Token(this.tokenName, lexeme.toString());
-        //return null;
     }
 
     @Override
-    public void appendLexeme(final char c) {
+    public void appendLexeme(final Character c) {
         this.lexeme.append(c);
     }
 
@@ -63,7 +70,7 @@ public class LexerFSM implements ILexer, IContext {
     }
 
     @Override
-    public void appendPostpone(final char c) {
+    public void appendPostpone(final Character c) {
         reader.posponeChar(c);
     }
 }
