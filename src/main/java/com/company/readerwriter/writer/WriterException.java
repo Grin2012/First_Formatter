@@ -1,15 +1,13 @@
 package com.company.readerwriter.writer;
 
-import java.io.IOException;
-
 /**
  * Writer exception class implemented IWriter interface
  */
-public class WriterException extends Throwable {
+public class WriterException extends Exception {
     /**
      * @param innerException - throws innerException
      */
-    public WriterException(final IOException innerException) {
+    public WriterException(final Exception innerException) {
         super(innerException);
     }
 

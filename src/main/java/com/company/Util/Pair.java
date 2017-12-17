@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Util;
 
 /**
  * A pair of any objects with correct equals() and hashCode() overridden.

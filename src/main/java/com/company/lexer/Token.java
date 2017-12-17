@@ -55,9 +55,9 @@ public final class Token implements IToken {
 
     @Override
     public String toString() {
-        return "Token{" +
-                "name='" + name + '\'' +
-                ", lexeme='" + lexeme + '\'' +
+        return "Token{\n" +
+                "name = " + name + "\n" +
+                "lexeme = " + lexeme + '\n' +
                 '}';
     }
 }

@@ -4,11 +4,11 @@ package com.company.lexer;
  * Reader exception class implemented IReader interface
  */
 
-public class LexerException extends Throwable {
+public class LexerException extends Exception {
     /**
      * @param innerException - throws innerException
      */
-    public LexerException(final Throwable innerException) {
+    public LexerException(final Exception innerException) {
         super(innerException);
     }
 
@@ -24,7 +24,7 @@ public class LexerException extends Throwable {
      * @param message - exception with message
      * @param innerException - throws innerException
      */
-    public LexerException(final String message, final Throwable innerException) {
+    public LexerException(final String message, final Exception innerException) {
         super(message, innerException);
     }
 }

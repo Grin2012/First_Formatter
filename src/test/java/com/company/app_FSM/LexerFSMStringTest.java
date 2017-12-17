@@ -1,4 +1,4 @@
-package com.company;
+package com.company.app_FSM;
 
 import com.company.lexer.ILexer;
 import com.company.lexer.LexerException;
@@ -20,6 +20,7 @@ public class LexerFSMStringTest {
         reader = new StringReader(lexerTest);
         lexer = new LexerFSM(reader);
         assertEquals(new Token("space", "   ").toString(), lexer.getToken().toString());
+        assertEquals(new Token("char", "a").toString(), lexer.getToken().toString());
     }
 
     @Test
@@ -71,6 +72,15 @@ public class LexerFSMStringTest {
     }
 
     @Test
+    public void testSingleLineCommentWithOther() throws LexerException, ReaderException {
+        lexerTest = "//And i say:\"regrege{grgrg;}\"\n" +
+                "hero";
+        reader = new StringReader(lexerTest);
+        lexer = new LexerFSM(reader);
+        assertEquals(new Token("singleComment", "//And i say:\"regrege{grgrg;}\"").toString(), lexer.getToken().toString());
+    }
+
+    @Test
     public void testMultiLineComment() throws LexerException, ReaderException {
         lexerTest = "/*And i say:\n" +
                 "regrege*{grgrg;}\"*/";
@@ -80,10 +90,55 @@ public class LexerFSMStringTest {
     }
 
     @Test
+    public void testMultiLineCommentWithOther() throws LexerException, ReaderException {
+        lexerTest = "/*And i say:\n" +
+                "regrege*{grgrg;}\"*/ fdsdf";
+        reader = new StringReader(lexerTest);
+        lexer = new LexerFSM(reader);
+        assertEquals(new Token("multiComment", "/*And i say:\n" +
+                "regrege*{grgrg;}\"*/").toString(), lexer.getToken().toString());
+    }
+
+    @Test
     public void testChar() throws LexerException, ReaderException {
         lexerTest = "r";
         reader = new StringReader(lexerTest);
         lexer = new LexerFSM(reader);
         assertEquals(new Token("char", lexerTest).toString(), lexer.getToken().toString());
+    }
+
+    @Test
+    public void testFor() throws LexerException, ReaderException {
+        lexerTest = "for (int i = 0; i < indentLevel * spacesInTab; i++)";
+        reader = new StringReader(lexerTest);
+        lexer = new LexerFSM(reader);
+        assertEquals(new Token("for", "for").toString(), lexer.getToken().toString());
+    }
+
+    @Test
+    public void testFor1() throws LexerException, ReaderException {
+        lexerTest = "forr (int i = 0; i < indentLevel * spacesInTab; i++)";
+        reader = new StringReader(lexerTest);
+        lexer = new LexerFSM(reader);
+        assertEquals(new Token("char", "f").toString(), lexer.getToken().toString());
+        assertEquals(new Token("char", "o").toString(), lexer.getToken().toString());
+        assertEquals(new Token("char", "r").toString(), lexer.getToken().toString());
+        assertEquals(new Token("char", "r").toString(), lexer.getToken().toString());
+    }
+
+    @Test
+    public void testLeftParentheses() throws LexerException, ReaderException {
+        lexerTest = "(in";
+        reader = new StringReader(lexerTest);
+        lexer = new LexerFSM(reader);
+        assertEquals(new Token("leftParentheses", "(").toString(), lexer.getToken().toString());
+    }
+
+    @Test
+    public void testRightParentheses() throws LexerException, ReaderException {
+        lexerTest = ")in";
+        reader = new StringReader(lexerTest);
+        lexer = new LexerFSM(reader);
+        assertEquals(new Token("rightParentheses", ")").toString(), lexer.getToken().toString());
     }
 }

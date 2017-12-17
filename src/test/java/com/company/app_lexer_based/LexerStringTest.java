@@ -1,4 +1,4 @@
-package com.company;
+package com.company.app_lexer_based;
 
 import com.company.lexer.ILexer;
 import com.company.lexer.Lexer;

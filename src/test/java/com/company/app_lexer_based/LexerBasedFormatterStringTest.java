@@ -1,4 +1,4 @@
-package com.company;
+package com.company.app_lexer_based;
 
 import com.company.formatter.LexerBasedFormatter;
 import com.company.lexer.ILexer;

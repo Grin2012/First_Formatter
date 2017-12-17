@@ -1,15 +1,15 @@
 package com.company.formatter;
-
-import java.io.IOException;
-
-public class FormatterException extends Throwable {
+/**
+ *  Formatter Exceptions class
+ */
+public class FormatterException extends Exception {
          /**
-         * Cunstructor
+         * Constructor
          * @param message - Exception method
          * @param cause - Exception cause
          *
          */
-    public FormatterException(final String message, final Throwable cause) {
+    public FormatterException(final String message, final Exception cause) {
             super(message, cause);
         }
 }

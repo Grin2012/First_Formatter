@@ -8,7 +8,7 @@ public class CloseException extends Exception {
      * CloseException
      * @param cause - cause CloseException
      */
-    public CloseException(final Throwable cause) {
+    public CloseException(final Exception cause) {
         super(cause);
     }
     /**
@@ -24,7 +24,7 @@ public class CloseException extends Exception {
      * @param message - message CloseException
      * @param cause - cause CloseException
      */
-    public CloseException(final String message, final Throwable cause) {
+    public CloseException(final String message, final Exception cause) {
         super(message, cause);
 
     }

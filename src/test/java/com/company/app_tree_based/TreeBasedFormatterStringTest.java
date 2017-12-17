@@ -1,4 +1,4 @@
-package com.company;
+package com.company.app_tree_based;
 
 import com.company.formatter.*;
 import com.company.readerwriter.reader.*;

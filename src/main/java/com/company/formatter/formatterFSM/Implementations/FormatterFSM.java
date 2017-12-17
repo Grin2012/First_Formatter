@@ -10,13 +10,17 @@ import com.company.readerwriter.reader.ReaderException;
 import com.company.readerwriter.writer.IWriter;
 import com.company.readerwriter.writer.WriterException;
 
+/**
+ * Final State machine formatter
+ */
 
 public class FormatterFSM implements ILexerFormatter {
     private IFormatterCommandRepository formatterCommands = new FormatterCommandRepository();
     private IFormatterStateTransitions formatterStates = new FormatterStateTransitions();
 
     @Override
-    public void format(final ILexer lexer, final IWriter writer) throws WriterException, ReaderException, LexerException, FormatterException {
+    public void format(final ILexer lexer, final IWriter writer) throws WriterException, ReaderException,
+            LexerException, FormatterException {
         IFormatterContext formatterContext = new FormatterContext(writer);
         IFormatterState formatterState = new FormatterState("default");
         while (lexer.canReadToken() && formatterState != null) {

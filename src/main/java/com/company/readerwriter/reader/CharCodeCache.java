@@ -17,10 +17,10 @@ public class CharCodeCache {
 
     /**
      * Put to buffer
-     * @param charCode - integer
+     * @param chrCode - integer
      */
-    public void add(final int charCode) {
-        this.charCode = charCode;
+    public void add(final int chrCode) {
+        this.charCode = chrCode;
     }
 
     /**

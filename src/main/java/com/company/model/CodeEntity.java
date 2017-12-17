@@ -81,7 +81,8 @@ public class CodeEntity {
         }
     }
 
-    private void writeTab(final IWriter writer, final int nestLevel, final CodeEntity prev, final CodeEntity current) throws WriterException {
+    private void writeTab(final IWriter writer, final int nestLevel, final CodeEntity prev, final CodeEntity current)
+            throws WriterException {
         if (prev == null && current instanceof CodeWordEntity) {
             writeTab(writer, nestLevel);
             return;

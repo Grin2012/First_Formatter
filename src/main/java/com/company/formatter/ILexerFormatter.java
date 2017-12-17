@@ -20,7 +20,8 @@ public interface ILexerFormatter {
      * @param writer - implemented IWriter
      * @throws WriterException - writer exceptions
      * @throws ReaderException - reader exceptions
-     * @throws LexerException - lexer exceptions     *
+     * @throws LexerException - lexer exceptions
+     * @throws FormatterException - formatter exceptions
      */
 
     void format(ILexer lexer, IWriter writer) throws WriterException, ReaderException, LexerException, FormatterException;

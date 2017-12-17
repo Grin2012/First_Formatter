@@ -6,7 +6,7 @@ import java.io.IOException;
  * Reader exception class implemented IReader interface
  */
 
-public class ReaderException extends Throwable {
+public class ReaderException extends Exception {
     /**
      * @param innerException - throws innerException
      */
